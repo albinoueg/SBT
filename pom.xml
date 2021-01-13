@@ -30,6 +30,11 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
@@ -38,11 +43,6 @@
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
             <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
@@ -69,8 +69,83 @@
             <version>1.14.13</version>
         </dependency>
     </dependencies>
-
+    <profiles>
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!-- Mysql -->
+                <spring.datasource.url.facility>${spring.datasource.url.local}</spring.datasource.url.facility>
+                <spring.datasource.username.facility>${spring.datasource.username.local}</spring.datasource.username.facility>
+                <spring.datasource.password.facility>${spring.datasource.password.local}</spring.datasource.password.facility>
+                <!-- Jpa -->
+                <spring.jpa.hibernate.ddl-auto.facility>${spring.jpa.hibernate.ddl-auto.local}</spring.jpa.hibernate.ddl-auto.facility>
+                <spring.jpa.show-sql.facility>${spring.jpa.show-sql.local}</spring.jpa.show-sql.facility>
+                <spring.jpa.open-in-view.facility>${spring.jpa.open-in-view.local}</spring.jpa.open-in-view.facility>
+            </properties>
+        </profile>
+        <profile>
+            <id>desenv</id>
+            <properties>
+                <!-- Mysql -->
+                <spring.datasource.url.facility>${spring.datasource.url.desenv}</spring.datasource.url.facility>
+                <spring.datasource.username.facility>${spring.datasource.username.desenv}</spring.datasource.username.facility>
+                <spring.datasource.password.facility>${spring.datasource.password.desenv}</spring.datasource.password.facility>
+                <!-- Jpa -->
+                <spring.jpa.hibernate.ddl-auto.facility>${spring.jpa.hibernate.ddl-auto.desenv}</spring.jpa.hibernate.ddl-auto.facility>
+                <spring.jpa.show-sql.facility>${spring.jpa.show-sql.desenv}</spring.jpa.show-sql.facility>
+                <spring.jpa.open-in-view.facility>${spring.jpa.open-in-view.desenv}</spring.jpa.open-in-view.facility>
+            </properties>
+        </profile>
+        <profile>
+            <id>homolog</id>
+            <properties>
+                <!-- Mysql -->
+                <spring.datasource.url.facility>${spring.datasource.url.homolog}</spring.datasource.url.facility>
+                <spring.datasource.username.facility>${spring.datasource.username.homolog}</spring.datasource.username.facility>
+                <spring.datasource.password.facility>${spring.datasource.password.homolog}</spring.datasource.password.facility>
+                <!-- Jpa -->
+                <spring.jpa.hibernate.ddl-auto.facility>${spring.jpa.hibernate.ddl-auto.homolog}</spring.jpa.hibernate.ddl-auto.facility>
+                <spring.jpa.show-sql.facility>${spring.jpa.show-sql.homolog}</spring.jpa.show-sql.facility>
+                <spring.jpa.open-in-view.facility>${spring.jpa.open-in-view.homolog}</spring.jpa.open-in-view.facility>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <!-- Mysql -->
+                <spring.datasource.url.facility>${spring.datasource.url.prod}</spring.datasource.url.facility>
+                <spring.datasource.username.facility>${spring.datasource.username.prod}</spring.datasource.username.facility>
+                <spring.datasource.password.facility>${spring.datasource.password.prod}</spring.datasource.password.facility>
+                <!-- Jpa -->
+                <spring.jpa.hibernate.ddl-auto.facility>${spring.jpa.hibernate.ddl-auto.prod}</spring.jpa.hibernate.ddl-auto.facility>
+                <spring.jpa.show-sql.facility>${spring.jpa.show-sql.prod}</spring.jpa.show-sql.facility>
+                <spring.jpa.open-in-view.facility>${spring.jpa.open-in-view.prod}</spring.jpa.open-in-view.facility>
+            </properties>
+        </profile>
+    </profiles>
     <build>
+        <filters>
+            <filter>src/main/filters/sbt.filter</filter>
+        </filters>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

@@ -1,0 +1,32 @@
+#Propriedades gerais para ambiente 'local'
+spring.datasource.url.local = jdbc:mysql://localhost:3306/demo_mvc?createDatabaseIfNotExist=true
+spring.datasource.username.local= root
+spring.datasource.password.local=
+spring.jpa.hibernate.ddl-auto.local= update
+spring.jpa.show-sql.local= true
+spring.jpa.open-in-view.local= true
+
+#Propriedades gerais para ambiente 'desenv'
+spring.datasource.url.desenv =
+spring.datasource.username.desenv=
+spring.datasource.password.desenv=
+spring.jpa.hibernate.ddl-auto.desenv=
+spring.jpa.show-sql.desenv=
+spring.jpa.open-in-view.desenv=
+
+#Propriedades gerais para ambiente 'homolog'
+spring.datasource.url.homolog =
+spring.datasource.username.homolog=
+spring.datasource.password.homolog=
+spring.jpa.hibernate.ddl-auto.homolog=
+spring.jpa.show-sql.homolog=
+spring.jpa.open-in-view.homolog=
+
+#Propriedades gerais para ambiente 'prod'
+spring.datasource.url.prod =
+spring.datasource.username.prod=
+spring.datasource.password.prod=
+spring.jpa.hibernate.ddl-auto.prod=
+spring.jpa.show-sql.prod=
+spring.jpa.open-in-view.prod=
+
