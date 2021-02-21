@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout}">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<section class="layout-content" layout:fragment="corpo">
+
+    <nav class="navbar navbar-expand-md bg-light">
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <i class="oi oi-caret-right"></i>
+                    <span>Cadastrar Países</span>
+                </li>
+            </ul>
+            <a class="btn btn-primary btn-md" href="/paises/listar" role="button">
+                <span class="oi oi-spreadsheet" title="Listar" aria-hidden="true"></span>
+                <span>Listar Países</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container" id="cadastro">
+
+        <div th:replace="fragments/alert"></div>
+
+        <form th:action="${pais.id == null} ? @{/paises/salvar} : @{/paises/editar}" th:object="${pais}" method="POST">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="nome">Nome País (Em Português)</label>
+                    <input type="text" class="form-control" id="nome_pt"
+                           placeholder="Nome País (Em Português)" autofocus="autofocus" th:field="*{nomeEmPortuguesPais}"/>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="nome">Nome País</label>
+                    <input type="text" class="form-control" id="nome"
+                           placeholder="Nome País" autofocus="autofocus" th:field="*{nomePais}"/>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="nome">Sigla</label>
+                    <input type="text" class="form-control" id="sigla"
+                           placeholder="Sigla" autofocus="autofocus" th:field="*{siglaPais}"/>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="nome">Código Bacen</label>
+                    <input type="text" class="form-control" id="codigo_bacen"
+                           placeholder="Código Bacen" autofocus="autofocus" th:field="*{codigoBacen}"/>
+                </div>
+            </div>
+            <input type="hidden" id="id" th:field="*{id}"/>
+            <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>
