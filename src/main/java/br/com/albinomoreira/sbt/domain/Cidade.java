@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "CIDADE")
 public class Cidade extends AbstractEntity<Long>{
 
-    @Column(name = "NOME", nullable = false, unique = true, length = 60)
+    @Column(name = "NOME", nullable = false, unique = true, length = 120)
     private String nomeCidade;
 
     @Column(name = "IBGE")

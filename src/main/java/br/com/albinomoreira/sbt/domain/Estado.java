@@ -7,7 +7,7 @@ import java.util.List;
 @Table(name = "ESTADO")
 public class Estado extends AbstractEntity<Long>{
 
-    @Column(name = "NOME", nullable = false, unique = true, length = 60)
+    @Column(name = "NOME", nullable = false, unique = true, length = 75)
     private String nomeEstado;
 
     @Column(name = "UF", length = 2)

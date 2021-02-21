@@ -13,7 +13,7 @@ public class Pais extends AbstractEntity<Long>{
     @Column(name = "NOME", nullable = false, unique = true, length = 60)
     private String nomePais;
 
-    @Column(name = "NOME_PT")
+    @Column(name = "NOME_PT", nullable = false, unique = true, length = 60)
     private String nomeEmPortuguesPais;
 
     @Column(name = "SIGLA", length = 2)

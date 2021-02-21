@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="~{layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
 </head>
 <body>
+<section class="layout-content" layout:fragment="corpo">
 
+	<nav class="navbar navbar-expand-md bg-light">
+		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<i class="oi oi-caret-right"></i>
+					<span>Cadastrar Cidades</span>
+				</li>
+			</ul>
+		</div>
+		<a class="btn btn-primary btn-md" href="/cidades/listar" role="button">
+			<span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
+			<span>Listar Cidades</span>
+		</a>
+	</nav>
+
+	<div class="container" id="cadastro">
+
+		<div th:replace="fragments/alert"></div>
+
+		<form th:action="${cidade.id == null} ? @{/cidades/salvar} : @{/cidades/editar}"
+			  th:object="${cidade}" method="POST">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="nomeCidade">Nome</label>
+					<input type="text" class="form-control" id="nomeCidade" placeholder="Nome Cidade"
+						   autofocus="autofocus" th:field="*{nomeCidade}"/>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="pais">Estado</label>
+					<select id="pais" class="form-control" th:field="*{ufCidade}">
+						<option value="">Selecione</option>
+						<option th:each="e : ${estados}"
+								th:value="${e.id}" th:text="${e.nomeEstado}">estados</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="ibge">Código IBGE</label>
+					<input type="text" class="form-control" id="ibge" placeholder="Código IBGE"
+						   autofocus="autofocus" th:field="*{codigoIbge}"/>
+				</div>
+			</div>
+			<input type="hidden" id="id" th:field="*{id}"/>
+			<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+		</form>
+	</div>
+</section>
 </body>
-</html>
+</html>		
