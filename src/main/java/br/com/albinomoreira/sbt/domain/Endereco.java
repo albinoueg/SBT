@@ -10,20 +10,20 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "ENDERECOS")
-public class Endereco extends AbstractEntity<Long>{
+public class Endereco extends AbstractEntity<Long> {
 
     @NotBlank
-    @Size(max = 255, min = 3)
+    @Size(min = 3, max = 255)
     @Column(nullable = false)
     private String logradouro;
 
     @NotBlank
-    @Size(max = 255, min = 3)
+    @Size(min = 3, max = 255)
     @Column(nullable = false)
     private String bairro;
 
     @NotBlank
-    @Size(max = 255, min = 3)
+    @Size(min = 3, max = 255)
     @Column(nullable = false)
     private String cidade;
 
@@ -41,6 +41,9 @@ public class Endereco extends AbstractEntity<Long>{
     @Digits(integer = 5, fraction = 0)
     @Column(nullable = false, length = 5)
     private Integer numero;
+
+    @Size(max = 255)
+    private String complemento;
 
     public String getLogradouro() {
         return logradouro;
@@ -97,6 +100,4 @@ public class Endereco extends AbstractEntity<Long>{
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
-
-    private String complemento;
 }
