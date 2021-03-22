@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout-master}">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<section layout:fragment="corpo">
+    <div class="mobile-menu-overlay"></div>
+    <div class="main-container">
+        <div class="pd-ltr-20 xs-pd-20-10">
+            <div class="min-height-200px">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="title">
+                                <h4>Grupos</h4>
+                            </div>
+                            <nav aria-label="breadcrumb" role="navigation">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/index">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Grupos</li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <div class="col-md-6 col-sm-12 text-right">
+                            <div class="dropdown">
+                                <a class="btn btn-primary btn-md" href="/grupos/cadastrar" role="button">
+                                    <span class="oi oi-plus" title="Cadastro Grupo" aria-hidden="true"></span>
+                                    <span>Novo Grupo</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-box mb-30">
+                    <div class="pd-20">
+                        <h4 class="text-blue h4">Grupos de Lancamento</h4>
+                    </div>
+                    <div class="pb-20">
+                        <table class="data-table table stripe hover nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="table-plus datatable-nosort">#</th>
+                                    <th>Name</th>
+                                    <th class="datatable-nosort">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="grupo : ${grupos}">
+                                    <td th:text="${grupo.id}">id</td>
+                                    <td class="table-plus" th:text="${grupo.nome}">nome</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                <i class="dw dw-more"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                <a class="dropdown-item" th:href="@{/grupos/editar/{id} (id=${grupo.id}) }"><i class="dw dw-edit2"></i> Editar</a>
+                                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- #FOOTER -->
+            <div class="footer-wrap pd-20 mb-20 card-box" th:replace="fragments-afin/footer :: footer">
+                <div>footer</div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- js -->
+<th:block layout:fragment="self-page-javascripts">
+    <script th:src="@{vendors/scripts/core.js}"></script>
+    <script th:src="@{vendors/scripts/script.min.js}"></script>
+    <script th:src="@{vendors/scripts/process.js}"></script>
+    <script th:src="@{vendors/scripts/layout-settings.js}"></script>
+    <script th:src="@{src/plugins/datatables/js/jquery.dataTables.min.js}"></script>
+    <script th:src="@{src/plugins/datatables/js/dataTables.bootstrap4.min.js}"></script>
+    <script th:src="@{src/plugins/datatables/js/dataTables.responsive.min.js}"></script>
+    <script th:src="@{src/plugins/datatables/js/responsive.bootstrap4.min.js}"></script>
+    <!-- buttons for Export datatable -->
+    <script th:src="@{src/plugins/datatables/js/dataTables.buttons.min.js}"></script>
+    <script th:src="@{src/plugins/datatables/js/buttons.bootstrap4.min.js}"></script>
+    <script th:src="@{src/plugins/datatables/js/buttons.print.min.js}"></script>
+    <script th:src="@{src/plugins/datatables/js/buttons.html5.min.js}"></script>
+    <script th:src="@{src/plugins/datatables/js/buttons.flash.min.js}"></script>
+    <script th:src="@{src/plugins/datatables/js/pdfmake.min.js}"></script>
+    <script th:src="@{src/plugins/datatables/js/vfs_fonts.js}"></script>
+    <!-- Datatable Setting js -->
+    <script th:src="@{vendors/scripts/datatable-setting.js}"></script>
+</th:block>
+</body>
+</html>
